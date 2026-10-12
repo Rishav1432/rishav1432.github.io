@@ -70,6 +70,16 @@ section h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:va
 .skills dd{margin:2px 0 0;color:var(--muted)}
 footer{padding:36px 0 56px;color:var(--muted);font-size:14px;border-top:1px solid var(--line)}
 </style>
+<script>
+function cover(img){
+  var b=img.closest('.book'); if(!b||img.dataset.tried){img.remove();return}
+  img.dataset.tried='1';
+  fetch('https://openlibrary.org/search.json?title='+encodeURIComponent(b.dataset.title)+'&author='+encodeURIComponent(b.dataset.author)+'&limit=1&fields=cover_i')
+    .then(function(r){return r.json()})
+    .then(function(d){var id=d.docs&&d.docs[0]&&d.docs[0].cover_i; if(id){img.src='https://covers.openlibrary.org/b/id/'+id+'-M.jpg?default=false'}else{img.remove()}})
+    .catch(function(){img.remove()});
+}
+</script>
 </head>
 <body>
 <header class="top">
@@ -172,24 +182,24 @@ footer{padding:36px 0 56px;color:var(--muted);font-size:14px;border-top:1px soli
   <section id="books">
     <h2>Books I read</h2>
     <div class="books">
-      <a class="book" href="https://www.goodreads.com/search?q=Harry+Potter+J.K.+Rowling" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">Harry Potter</span><img src="https://covers.openlibrary.org/b/isbn/9781408855652-M.jpg?default=false" alt="Cover of Harry Potter and the Philosopher's Stone" loading="lazy" onerror="this.remove()"></span>
+      <a class="book" href="https://www.goodreads.com/search?q=Harry+Potter+J.K.+Rowling" data-title="Harry Potter and the Philosopher's Stone" data-author="J.K. Rowling" target="_blank" rel="noopener">
+        <span class="cover"><span class="ct">Harry Potter</span><img src="https://covers.openlibrary.org/b/isbn/9781408855652-M.jpg?default=false" alt="Cover of Harry Potter and the Philosopher's Stone" loading="lazy" onerror="cover(this)"></span>
         <b>Harry Potter</b><span>J.K. Rowling · the full series</span>
       </a>
-      <a class="book" href="https://www.goodreads.com/search?q=The+Midnight+Library+Matt+Haig" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">The Midnight Library</span><img src="https://covers.openlibrary.org/b/isbn/9780525559474-M.jpg?default=false" alt="Cover of The Midnight Library" loading="lazy" onerror="this.remove()"></span>
+      <a class="book" href="https://www.goodreads.com/search?q=The+Midnight+Library+Matt+Haig" data-title="The Midnight Library" data-author="Matt Haig" target="_blank" rel="noopener">
+        <span class="cover"><span class="ct">The Midnight Library</span><img src="https://covers.openlibrary.org/b/isbn/9780525559474-M.jpg?default=false" alt="Cover of The Midnight Library" loading="lazy" onerror="cover(this)"></span>
         <b>The Midnight Library</b><span>Matt Haig</span>
       </a>
-      <a class="book" href="https://www.goodreads.com/search?q=Eleanor+Oliphant+Is+Completely+Fine+Gail+Honeyman" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">Eleanor Oliphant Is Completely Fine</span><img src="https://covers.openlibrary.org/b/isbn/9780735220683-M.jpg?default=false" alt="Cover of Eleanor Oliphant Is Completely Fine" loading="lazy" onerror="this.remove()"></span>
+      <a class="book" href="https://www.goodreads.com/search?q=Eleanor+Oliphant+Is+Completely+Fine+Gail+Honeyman" data-title="Eleanor Oliphant Is Completely Fine" data-author="Gail Honeyman" target="_blank" rel="noopener">
+        <span class="cover"><span class="ct">Eleanor Oliphant Is Completely Fine</span><img src="https://covers.openlibrary.org/b/isbn/9780735220683-M.jpg?default=false" alt="Cover of Eleanor Oliphant Is Completely Fine" loading="lazy" onerror="cover(this)"></span>
         <b>Eleanor Oliphant Is Completely Fine</b><span>Gail Honeyman</span>
       </a>
-      <a class="book" href="https://www.goodreads.com/search?q=Five+Point+Someone+Chetan+Bhagat" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">Five Point Someone</span><img src="https://covers.openlibrary.org/b/isbn/9788129104595-M.jpg?default=false" alt="Cover of Five Point Someone" loading="lazy" onerror="this.remove()"></span>
+      <a class="book" href="https://www.goodreads.com/search?q=Five+Point+Someone+Chetan+Bhagat" data-title="Five Point Someone" data-author="Chetan Bhagat" target="_blank" rel="noopener">
+        <span class="cover"><span class="ct">Five Point Someone</span><img src="https://covers.openlibrary.org/b/isbn/9788129104595-M.jpg?default=false" alt="Cover of Five Point Someone" loading="lazy" onerror="cover(this)"></span>
         <b>Five Point Someone</b><span>Chetan Bhagat</span>
       </a>
-      <a class="book" href="https://www.goodreads.com/search?q=Project+Hail+Mary+Andy+Weir" target="_blank" rel="noopener">
-        <span class="cover"><span class="ct">Project Hail Mary</span><img src="https://covers.openlibrary.org/b/isbn/9780593135204-M.jpg?default=false" alt="Cover of Project Hail Mary" loading="lazy" onerror="this.remove()"></span>
+      <a class="book" href="https://www.goodreads.com/search?q=Project+Hail+Mary+Andy+Weir" data-title="Project Hail Mary" data-author="Andy Weir" target="_blank" rel="noopener">
+        <span class="cover"><span class="ct">Project Hail Mary</span><img src="https://covers.openlibrary.org/b/isbn/9780593135204-M.jpg?default=false" alt="Cover of Project Hail Mary" loading="lazy" onerror="cover(this)"></span>
         <b>Project Hail Mary</b><span>Andy Weir</span>
       </a>
     </div>
